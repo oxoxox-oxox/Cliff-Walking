@@ -8,7 +8,7 @@ class QLearningAgent:
 
         self.q_table = np.zeros((n_states, n_actions))
 
-        self.alpha = 0.5
+        self.alpha = 0.1
         self.gamma = 0.9
         self.epsilon = 1.0
 
@@ -22,11 +22,14 @@ class QLearningAgent:
 
         return np.argmax(self.q_table[state])
 
-    def update(self, s, a, r, s_next):
+    def update(self, s, a, r, s_next,done):
 
         best_next = np.max(self.q_table[s_next])
 
-        td_target = r + (self.gamma * best_next)
+        if done:
+            td_target = r
+        else:
+            td_target = r + self.gamma * np.max(self.q_table[s_next])
         td_error = td_target - self.q_table[s, a]
 
         self.q_table[s, a] += self.alpha * td_error
