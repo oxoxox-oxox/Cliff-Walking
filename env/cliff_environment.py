@@ -46,7 +46,7 @@ class CliffWalkingEnv:
 
             self.pos = self.start
 
-        elif (nx, ny) in self.goal:
+        elif (nx, ny) == self.goal:
             reward = 0
             done = True
 
@@ -62,6 +62,7 @@ class CliffWalkingEnv:
         """
 
         self.pos = self.start
+        return self._get_state()
 
     def _get_state(self):
         """
@@ -69,7 +70,7 @@ class CliffWalkingEnv:
         """
 
         x, y = self.pos
-        return x * self.row + self.col
+        return x * self.col + y
 
     def render(self):
         """

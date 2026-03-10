@@ -1,12 +1,12 @@
-from env import cliff_environment
-from agent import q_learning
+from env.cliff_environment import CliffWalkingEnv
+from agent.q_learning import QLearningAgent
 
-env = cliff_environment()
+env = CliffWalkingEnv()
 
 n_states = env.row * env.col
 n_actions = 4
 
-agent = q_learning(n_states, n_actions)
+agent = QLearningAgent(n_states, n_actions)
 
 episodes = 500
 
@@ -21,7 +21,7 @@ for episode in range(episodes):
 
         action = agent.choose_action(state)
 
-        next_state, reward, done = env.step(action)
+        next_state, reward, done = env.move(action)
 
         agent.update(state, action, reward, next_state)
 
