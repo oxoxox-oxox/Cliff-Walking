@@ -18,7 +18,7 @@ class CliffWalkingEnv:
         self.col = 12
 
         self.start = (3, 0)
-        self.end = (3, 11)
+        self.goal = (3, 11)
 
         self.pos = self.start
 
@@ -46,7 +46,7 @@ class CliffWalkingEnv:
 
             self.pos = self.start
 
-        elif (nx, ny) in self.end:
+        elif (nx, ny) in self.goal:
             reward = 0
             done = True
 
@@ -75,3 +75,25 @@ class CliffWalkingEnv:
         """
         Print the current environment
         """
+
+        grid = [["." for _ in range(self.col)] for _ in range(self.row)]
+
+        # cliff
+        for x, y in self.cliff:
+            grid[x][y] = "C"
+
+        # Start and Goal
+        sx, sy = self.start
+        gx, gy = self.goal
+
+        grid[sx][sy] = "S"
+        grid[gx][gy] = "G"
+
+        # agent
+        ax, ay = self.pos
+        grid[ax][ay] = "A"
+
+        for row in grid:
+            print(" ".join(row))
+
+        print()
