@@ -8,7 +8,15 @@ n_actions = 4
 
 agent = QLearningAgent(n_states, n_actions)
 
-episodes = 500
+episodes = 10000
+
+
+# 优化参数设置
+epsilon_decay = 0.95
+epsilon_min = 0.01
+alpha_decay = 0.99
+alpha_min = 0.01
+
 
 for episode in range(episodes):
 
@@ -18,6 +26,10 @@ for episode in range(episodes):
     total_reward = 0
 
     while not done:
+        # 学习率衰减
+        agent.alpha = max(alpha_min, agent.alpha * alpha_decay)
+        # 探索率衰减
+        agent.epsilon = max(epsilon_min, agent.epsilon * epsilon_decay)
 
         action = agent.choose_action(state)
 
@@ -29,4 +41,4 @@ for episode in range(episodes):
 
         total_reward += reward
 
-    print("episode", episode, "reward", total_reward)
+        print("episode:", episode, ", reward:", total_reward)
