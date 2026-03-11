@@ -8,7 +8,7 @@ n_actions = 4
 
 agentS = Sarsa(n_states, n_actions)
 
-episodes = 50000
+episodes = 10000
 
 
 # 优化参数设置

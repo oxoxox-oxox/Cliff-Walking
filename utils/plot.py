@@ -2,13 +2,13 @@ import matplotlib.pyplot as plt
 
 # 读取 Q-learning 的奖励数据
 rewardsQ = []
-with open("./txt/rewardQ.txt", "r") as f:
+with open("./rewardQ.txt", "r") as f:
     for line in f:
         rewardsQ.append(float(line.strip()))
 
 # 读取 Sarsa 的奖励数据
 rewardsS = []
-with open("./txt/rewardS.txt", "r") as f:
+with open("./rewardS.txt", "r") as f:
     for line in f:
         rewardsS.append(float(line.strip()))
 

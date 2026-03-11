@@ -10,7 +10,7 @@ class QLearningAgent:
 
         self.alpha = 0.1
         self.gamma = 0.9
-        self.epsilon = 1.0
+        self.epsilon = 0.1
 
         self.n_actions = n_actions
 

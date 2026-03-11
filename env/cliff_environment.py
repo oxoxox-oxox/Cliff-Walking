@@ -44,8 +44,6 @@ class CliffWalkingEnv:
             reward = -100
             done = True
 
-            self.pos = self.start
-
         elif (nx, ny) == self.goal:
             reward = 0
             done = True
@@ -53,6 +51,8 @@ class CliffWalkingEnv:
         else:
             reward = -1
             done = False
+
+        self.pos = (nx, ny)
 
         return self._get_state(), reward, done
 
