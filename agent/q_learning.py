@@ -22,7 +22,7 @@ class QLearningAgent:
 
         return np.argmax(self.q_table[state])
 
-    def update(self, s, a, r, s_next,done):
+    def update(self, s, a, r, s_next, done):
 
         best_next = np.max(self.q_table[s_next])
 
