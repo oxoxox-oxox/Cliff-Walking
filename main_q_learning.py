@@ -8,7 +8,7 @@ n_actions = 4
 
 agentQ = QLearningAgent(n_states, n_actions)
 
-episodes = 10000
+episodes = 500
 
 # 优化参数设置
 # epsilon_decay = 0.999
