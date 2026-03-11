@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 
-class Sersa:
+class Sarsa:
 
     def __init__(self, n_states, n_actions):
 
@@ -22,12 +22,12 @@ class Sersa:
 
         return np.argmax(self.q_table[state])
 
-    def update(self, s, a, r, s_next, done):
+    def update(self, s, a, r, s_next, done, a_next):
 
-        best_next = np.max(self.q_table[s_next])
+        if done:
+            td_target = r
+        else:
+            td_target = r + self.gamma * self.q_table[s_next][a_next]
 
-        td_target = r + self.gamma * self.q_table[s_next][next_action]
-        td_error = td_target - self.q_table[state][action]
-        self.q_table[state][action] += alpha * td_error
-
-        self.q_table[s, a] += self.alpha * td_error
+        td_error = td_target - self.q_table[s][a]
+        self.q_table[s][a] += self.alpha * td_error

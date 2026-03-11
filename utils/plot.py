@@ -1,17 +1,24 @@
 import matplotlib.pyplot as plt
 
-rewards = []
-
-# 假设训练时记录reward
-with open("reward.txt") as f:
+# 读取 Q-learning 的奖励数据
+rewardsQ = []
+with open("./txt/rewardQ.txt", "r") as f:
     for line in f:
-        rewards.append(float(line.strip()))
+        rewardsQ.append(float(line.strip()))
 
-plt.figure()
-plt.plot(rewards)
+# 读取 Sarsa 的奖励数据
+rewardsS = []
+with open("./txt/rewardS.txt", "r") as f:
+    for line in f:
+        rewardsS.append(float(line.strip()))
 
-plt.xlabel("Episode")
-plt.ylabel("Reward")
-plt.title("Training Reward Curve")
+plt.figure(figsize=(10, 6))
+plt.plot(rewardsQ, label='Q-learning', color='blue', linestyle='-')
+plt.plot(rewardsS, label='Sarsa', color='red', linestyle='--')
 
+plt.xlabel("Episode (x500)")          # 因为每500个episode记录一次平均值
+plt.ylabel("Average Reward")
+plt.title("Comparison of Q-learning and Sarsa Training Rewards")
+plt.legend()                           # 显示图例
+plt.grid(True, alpha=0.3)               # 添加网格线，更易读
 plt.show()

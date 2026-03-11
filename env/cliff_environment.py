@@ -41,7 +41,7 @@ class CliffWalkingEnv:
         ny = max(0, min(self.col-1, ny))
 
         if (nx, ny) in self.cliff:
-            reward = -50
+            reward = -100
             done = True
 
             self.pos = self.start
