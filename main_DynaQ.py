@@ -1,12 +1,12 @@
 from env.cliff_environment import CliffWalkingEnv
-from agent.q_learning import QLearningAgent
+from agent.DynaQ import DynaQ_Agent
 
 env = CliffWalkingEnv()
 
 n_states = env.row * env.col
 n_actions = 4
 
-agentQ = QLearningAgent(n_states, n_actions)
+agentQ = DynaQ_Agent(n_states, n_actions)
 
 episodes = 500
 
@@ -53,7 +53,7 @@ for episode in range(episodes):
     reward_avgQ += total_rewardQ
 
     if count == 10:
-        with open("./rewardQ.txt", "a") as f:
+        with open("./rewardDQ.txt", "a") as f:
             f.write(str(reward_avgQ/10) + "\n")
         reward_avgQ = 0
         count = 0

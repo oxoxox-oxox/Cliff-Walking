@@ -8,7 +8,7 @@ n_actions = 4
 
 agentS = Sarsa(n_states, n_actions)
 
-episodes = 1000
+episodes = 500
 
 
 # 优化参数设置
@@ -57,8 +57,8 @@ for episode in range(episodes):
 
     reward_avgS += total_rewardS
 
-    if count == 500:
+    if count == 10:
         with open("./rewardS.txt", "a") as f:
-            f.write(str(reward_avgS/500) + "\n")
+            f.write(str(reward_avgS/10) + "\n")
         reward_avgS = 0
         count = 0
